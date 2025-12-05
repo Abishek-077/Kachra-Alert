@@ -1,6 +1,5 @@
 // Login Screen
 import 'package:flutter/material.dart';
-import 'signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -158,10 +157,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   const SizedBox(height: 24),
+
+                  // SIGN IN BUTTON (FIXED)
                   SizedBox(
                     height: 56,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, '/home');
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF2DD4BF),
                         shape: RoundedRectangleBorder(
@@ -178,6 +181,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
+
                   const SizedBox(height: 24),
                   const Row(
                     children: [
@@ -195,6 +199,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Expanded(child: Divider()),
                     ],
                   ),
+
                   const SizedBox(height: 24),
                   Row(
                     children: [
@@ -229,7 +234,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
+
                   const SizedBox(height: 24),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -240,14 +247,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Color(0xFF6B7280),
                         ),
                       ),
+
+                      // SIGN UP LINK (FIXED)
                       TextButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SignUpScreen(),
-                            ),
-                          );
+                          Navigator.pushNamed(context, '/signup');
                         },
                         child: const Text(
                           'Sign Up',
