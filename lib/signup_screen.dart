@@ -130,7 +130,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const Text(
                     'Phone Number',
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 15,
                       fontWeight: FontWeight.w500,
                       color: Color(0xFF111827),
                     ),
