@@ -1,4 +1,3 @@
-// Sign Up Screen
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -14,7 +13,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _obscurePassword = true;
-  final int _currentStep = 0;
+
+  // If you want multi-step later, this will be used:
+  int _currentStep = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +55,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   const SizedBox(height: 24),
+
                   const Text(
                     'Create Account',
                     style: TextStyle(
@@ -63,11 +65,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   const SizedBox(height: 8),
+
                   const Text(
                     'Join KacharaAlert today',
                     style: TextStyle(fontSize: 16, color: Color(0xFF6B7280)),
                   ),
                   const SizedBox(height: 32),
+
                   Row(
                     children: [
                       _buildStepIndicator(1, true),
@@ -82,7 +86,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       _buildStepIndicator(2, _currentStep > 0),
                     ],
                   ),
+
                   const SizedBox(height: 32),
+
                   const Text(
                     'Full Name',
                     style: TextStyle(
@@ -92,6 +98,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   const SizedBox(height: 8),
+
                   TextField(
                     controller: _nameController,
                     decoration: const InputDecoration(
@@ -100,6 +107,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   const SizedBox(height: 16),
+
                   const Text(
                     'Email Address',
                     style: TextStyle(
@@ -109,6 +117,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   const SizedBox(height: 8),
+
                   TextField(
                     controller: _emailController,
                     decoration: const InputDecoration(
@@ -117,6 +126,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   const SizedBox(height: 16),
+
                   const Text(
                     'Phone Number',
                     style: TextStyle(
@@ -126,14 +136,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   const SizedBox(height: 8),
+
                   TextField(
                     controller: _phoneController,
+                    keyboardType: TextInputType.phone,
                     decoration: const InputDecoration(
                       hintText: '1234567890',
                       prefixIcon: Icon(Icons.phone_outlined),
                     ),
                   ),
                   const SizedBox(height: 16),
+
                   const Text(
                     'Password',
                     style: TextStyle(
@@ -143,6 +156,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   const SizedBox(height: 8),
+
                   TextField(
                     controller: _passwordController,
                     obscureText: _obscurePassword,
@@ -163,11 +177,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                   ),
+
                   const SizedBox(height: 32),
+
                   SizedBox(
                     height: 56,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // TODO: Add form validation or next-step logic
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF2DD4BF),
                         shape: RoundedRectangleBorder(
@@ -184,7 +202,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                   ),
+
                   const SizedBox(height: 24),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

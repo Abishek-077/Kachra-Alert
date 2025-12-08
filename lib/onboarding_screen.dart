@@ -1,6 +1,5 @@
 // Onboarding Screen
 import 'package:flutter/material.dart';
-import 'login_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -70,7 +69,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 32),
+                  const SizedBox(height: 33),
                   SizedBox(
                     width: double.infinity,
                     height: 56,
@@ -82,12 +81,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             curve: Curves.easeInOut,
                           );
                         } else {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LoginScreen(),
-                            ),
-                          );
+                          Navigator.pushReplacementNamed(context, '/login');
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -109,12 +103,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   if (_currentPage < 2)
                     TextButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginScreen(),
-                          ),
-                        );
+                        Navigator.pushReplacementNamed(context, '/login');
                       },
                       child: const Text(
                         'Skip',
