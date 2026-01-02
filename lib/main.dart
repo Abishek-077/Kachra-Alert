@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:kachra_alert/screens/home_screen.dart';
-import 'screens/splash_screen.dart';
-import 'screens/onboarding_screen.dart';
-import 'screens/login_screen.dart';
-import 'screens/signup_screen.dart';
+import 'package:kachra_alert/screens/dashboard_screen.dart';
+import 'package:kachra_alert/screens/splash_screen.dart';
+import 'package:kachra_alert/screens/onboarding_screen.dart';
+import 'package:kachra_alert/screens/login_screen.dart';
+import 'package:kachra_alert/screens/signup_screen.dart';
+import 'package:kachra_alert/app_state.dart';
+import 'package:kachra_alert/widget/change_notifier_provider.dart';
 
 void main() {
-  runApp(const KacharaAlertApp());
+  runApp(
+    ChangeNotifierProvider(
+      notifier: AppState(),
+      child: const KacharaAlertApp(),
+    ),
+  );
 }
 
 class KacharaAlertApp extends StatelessWidget {
@@ -22,17 +29,13 @@ class KacharaAlertApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFF0FDF9),
         fontFamily: 'Inter',
       ),
-
-      // Initial route
       initialRoute: '/splash',
-
-      // Route definitions
       routes: {
         '/splash': (context) => const SplashScreen(),
         '/onboarding': (context) => const OnboardingScreen(),
         '/login': (context) => const LoginScreen(),
         '/signup': (context) => const SignUpScreen(),
-        '/home': (context) => const HomeScreen(),
+        '/dashboard': (context) => const DashboardScreen(),
       },
     );
   }

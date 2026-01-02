@@ -1,4 +1,3 @@
-// Login Screen
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -9,10 +8,18 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   bool _rememberMe = false;
   bool _obscurePassword = true;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(fontSize: 16, color: Color(0xFF6B7280)),
                   ),
                   const SizedBox(height: 32),
+
                   const Text(
                     'Email Address',
                     style: TextStyle(
@@ -82,6 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       prefixIcon: Icon(Icons.email_outlined),
                     ),
                   ),
+
                   const SizedBox(height: 16),
                   const Text(
                     'Password',
@@ -112,6 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
+
                   const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -156,14 +166,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
+
                   const SizedBox(height: 24),
 
-                  // SIGN IN BUTTON (FIXED)
+                  /// SIGN IN BUTTON → DASHBOARD
                   SizedBox(
                     height: 56,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/home');
+                        Navigator.pushReplacementNamed(context, '/dashboard');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF2DD4BF),
@@ -208,13 +219,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {},
                           icon: const Icon(Icons.g_mobiledata, size: 24),
                           label: const Text('Google'),
-                          style: OutlinedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            side: const BorderSide(color: Color(0xFFE5E7EB)),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
                         ),
                       ),
                       const SizedBox(width: 16),
@@ -223,13 +227,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {},
                           icon: const Icon(Icons.facebook, size: 20),
                           label: const Text('Facebook'),
-                          style: OutlinedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            side: const BorderSide(color: Color(0xFFE5E7EB)),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
                         ),
                       ),
                     ],
@@ -246,8 +243,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Color(0xFF6B7280),
                         ),
                       ),
-
-                      // SIGN UP LINK (FIXED)
                       TextButton(
                         onPressed: () {
                           Navigator.pushNamed(context, '/signup');

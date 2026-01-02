@@ -8,14 +8,21 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final _nameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _phoneController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   bool _obscurePassword = true;
 
-  // If you want multi-step later, this will be used:
-  int _currentStep = 0;
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _phoneController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,11 +72,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   const SizedBox(height: 8),
-
                   const Text(
                     'Join KacharaAlert today',
                     style: TextStyle(fontSize: 16, color: Color(0xFF6B7280)),
                   ),
+
                   const SizedBox(height: 32),
 
                   Row(
@@ -78,12 +85,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       Expanded(
                         child: Container(
                           height: 2,
-                          color: _currentStep > 0
-                              ? const Color(0xFF2DD4BF)
-                              : const Color(0xFFE5E7EB),
+                          color: const Color(0xFF2DD4BF),
                         ),
                       ),
-                      _buildStepIndicator(2, _currentStep > 0),
+                      _buildStepIndicator(2, true),
                     ],
                   ),
 
@@ -98,7 +103,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   const SizedBox(height: 8),
-
                   TextField(
                     controller: _nameController,
                     decoration: const InputDecoration(
@@ -106,8 +110,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       prefixIcon: Icon(Icons.person_outline),
                     ),
                   ),
-                  const SizedBox(height: 16),
 
+                  const SizedBox(height: 16),
                   const Text(
                     'Email Address',
                     style: TextStyle(
@@ -117,7 +121,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   const SizedBox(height: 8),
-
                   TextField(
                     controller: _emailController,
                     decoration: const InputDecoration(
@@ -125,18 +128,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       prefixIcon: Icon(Icons.email_outlined),
                     ),
                   ),
-                  const SizedBox(height: 16),
 
+                  const SizedBox(height: 16),
                   const Text(
                     'Phone Number',
                     style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 14,
                       fontWeight: FontWeight.w500,
                       color: Color(0xFF111827),
                     ),
                   ),
                   const SizedBox(height: 8),
-
                   TextField(
                     controller: _phoneController,
                     keyboardType: TextInputType.phone,
@@ -145,8 +147,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       prefixIcon: Icon(Icons.phone_outlined),
                     ),
                   ),
-                  const SizedBox(height: 16),
 
+                  const SizedBox(height: 16),
                   const Text(
                     'Password',
                     style: TextStyle(
@@ -156,7 +158,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   const SizedBox(height: 8),
-
                   TextField(
                     controller: _passwordController,
                     obscureText: _obscurePassword,
@@ -180,11 +181,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                   const SizedBox(height: 32),
 
+                  /// COMPLETE SIGN UP → DASHBOARD
                   SizedBox(
                     height: 56,
                     child: ElevatedButton(
                       onPressed: () {
-                        // TODO: Add form validation or next-step logic
+                        Navigator.pushReplacementNamed(context, '/dashboard');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF2DD4BF),
@@ -193,7 +195,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       child: const Text(
-                        'Next Step',
+                        'Create Account',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -204,7 +206,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
 
                   const SizedBox(height: 24),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
